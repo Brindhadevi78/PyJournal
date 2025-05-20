@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="set-name">
+    <div class="container">
+        <div class="form-container">
+            <h2>Set Your Name</h2>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST" class="name-form">
+                <div class="form-group">
+                    <label for="username">Your Name</label>
+                    <input type="text" id="username" name="username" required 
+                           placeholder="Enter your name" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn-primary">Set Name</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %} 

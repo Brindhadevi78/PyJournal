@@ -1,0 +1,117 @@
+.post-detail {
+    padding: 2rem 0;
+}
+
+.post {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.post-header {
+    margin-bottom: 2rem;
+}
+
+.post-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.post-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.post-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.post-image {
+    max-width: 100%;        /* Prevent overflowing container */
+    width: 50%;            /* Stretches to fit parent */
+    max-height: 400px;      /* Limit height to stop it from dominating */
+    height: auto;           /* Maintain aspect ratio */
+    display: block;         /* Remove inline spacing */
+    margin: 0 auto 2rem;    /* Center and space below */
+    object-fit: contain;    /* Better for post images */
+    border-radius: 8px;
+}
+
+
+.post-content {
+    line-height: 1.6;
+    color: #444;
+}
+
+.audio-controls {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.btn-audio {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.btn-audio:hover {
+    background: #357abd;
+}
+
+.audio-error {
+    color: #e74c3c;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #fde8e8;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.post-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.post-text p {
+    margin-bottom: 1.5rem;
+}
+
+.related-posts {
+    padding: 2rem 0;
+    background: #f8f9fa;
+}
+
+.related-posts h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .post {
+        padding: 1rem;
+    }
+    
+    .post-header h1 {
+        font-size: 2rem;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+} 

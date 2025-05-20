@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section with Video Background -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to PyJournal</h1>
+        <p class="hero-subtitle">Your Gateway to Entertainment & Adventure</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('create') }}" class="btn-primary">Create Post</a>
+        </div>
+    </div>
+    <div class="hero-overlay"></div>
+</section>
+
+<!-- Latest Posts Section -->
+<section id="featured-posts" class="featured-posts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest Posts</h2>
+            <div class="section-controls">
+                <button class="view-toggle active" data-view="grid">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button class="view-toggle" data-view="list">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="posts-grid">
+            {% for post in posts[:5] %}
+            <article class="post-card">
+                <div class="post-image-container">
+                    <img src="{{ post.image_url }}" 
+                         alt="{{ post.title }}"
+                         class="post-image"
+                         onload="this.classList.remove('loading')"
+                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/fallback.jpg') }}'; this.classList.add('error');">
+                </div>
+                <div class="post-content">
+                    <div class="post-tags">
+                        <span class="tag">{{ post.author }}</span>
+                    </div>
+                    <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+                    <p class="post-meta">
+                        <span class="author"><i class="fas fa-user"></i> {{ post.author }}</span>
+                        <span class="date"><i class="fas fa-calendar"></i> {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                    </p>
+                    <p class="post-excerpt">{{ post.content[:200] }}...</p>
+                    <div class="post-footer">
+                        <a href="{{ url_for('post', post_id=post.id) }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="post-stats">
+                            <span><i class="fas fa-eye"></i> 1.2k</span>
+                            <span><i class="fas fa-comment"></i> 24</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories">
+    <div class="container">
+        <h2 class="section-title">Explore Categories</h2>
+        <div class="categories-grid">
+            <a href="{{ url_for('home', category='Travel') }}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h3>Travel</h3>
+                <p>Discover amazing destinations and travel tips</p>
+            </a>
+            <a href="{{ url_for('home', category='Cooking') }}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Cooking</h3>
+                <p>Recipes and culinary adventures</p>
+            </a>
+            <a href="{{ url_for('home', category='Anime') }}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <h3>Anime</h3>
+                <p>Latest anime reviews and discussions</p>
+            </a>
+            <a href="{{ url_for('home', category='Movies') }}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3>Movies</h3>
+                <p>Film reviews and recommendations</p>
+            </a>
+            <a href="{{ url_for('home', category='Creativity') }}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Creativity</h3>
+                <p>Inspiration and creative ideas</p>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

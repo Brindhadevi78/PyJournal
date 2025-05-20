@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Audio Blog - PyJournal{% endblock %}
+
+{% block content %}
+<div class="audio-blog-container">
+    <h1>Voice-to-Blog</h1>
+    <p class="subtitle">Speak your thoughts and convert them into a blog post</p>
+
+    <div class="voice-controls">
+        <button id="startBtn" class="btn-primary">
+            <i class="fas fa-microphone"></i> Start Speaking
+        </button>
+        <button id="stopBtn" class="btn-secondary" disabled>
+            <i class="fas fa-stop"></i> Stop
+        </button>
+        <div class="recording-status">
+            <span id="status">Not recording</span>
+            <div id="recordingIndicator" class="recording-indicator"></div>
+        </div>
+    </div>
+
+    <div class="transcription-container">
+        <textarea id="transcription" placeholder="Your speech will appear here..."></textarea>
+        <div class="word-count">
+            <span id="wordCount">0</span> words
+        </div>
+    </div>
+
+    <form id="blogForm" action="{{ url_for('save_audio_blog') }}" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="technology">Technology</option>
+                <option value="lifestyle">Lifestyle</option>
+                <option value="travel">Travel</option>
+                <option value="food">Food</option>
+                <option value="entertainment">Entertainment</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" required></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" id="saveDraft" class="btn-secondary">Save as Draft</button>
+            <button type="submit" class="btn-primary">Publish Post</button>
+        </div>
+    </form>
+</div>
+{% endblock %} 

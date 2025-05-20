@@ -1,0 +1,7 @@
+<div class="post-image-container">
+    <img src="{{ post.image_url }}" 
+         alt="{{ post.title }}" 
+         class="post-image loading"
+         onerror="this.onerror=null; this.src='/static/images/fallback.jpg';"
+         onload="this.classList.remove('loading')">
+</div> 

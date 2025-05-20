@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="post-detail">
+    <div class="container">
+        <article class="post">
+            <div class="post-header">
+                <h1>{{ post.title }}</h1>
+                <div class="post-meta">
+                    <span class="author"><i class="fas fa-user"></i> {{ post.author }}</span>
+                    <span class="date"><i class="fas fa-calendar"></i> {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                    <span class="category"><i class="fas fa-tag"></i> {{ post.category }}</span>
+                </div>
+            </div>
+            
+            <div class="post-image">
+                <img src="{{ post.image_url }}" 
+                     alt="{{ post.title }}"
+                    
+                     class="post-image">
+            </div>
+            
+            <div class="post-content">
+                <div class="audio-controls">
+                    <button id="playAudio" class="btn-audio">
+                        <i class="fas fa-headphones"></i> Listen to this post
+                    </button>
+                    <audio id="postAudio" controls style="display: none;">
+                        <source src="{{ url_for('text_to_speech', post_id=post.id) }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div id="audioError" class="audio-error" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Audio playback is not available at the moment.
+                    </div>
+                </div>
+                
+                <div class="post-text">
+                    {{ post.content | safe }}
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="related-posts">
+    <div class="container">
+        <h2>You might also like</h2>
+        <div class="posts-grid">
+            <!-- Related posts would go here -->
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('playAudio').addEventListener('click', function() {
+    const audio = document.getElementById('postAudio');
+    const errorDiv = document.getElementById('audioError');
+    
+    audio.style.display = 'block';
+    audio.play().catch(function(error) {
+        console.error('Audio playback failed:', error);
+        errorDiv.style.display = 'block';
+        audio.style.display = 'none';
+    });
+});
+</script>
+{% endblock %} 
